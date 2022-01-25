@@ -11,7 +11,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.movie2you.R
 import com.example.movie2you.adapter.NowPlayingAdapter
-import com.example.movie2you.adapter.NowPlayingDbAdapter
 import com.example.movie2you.base.BaseFragment
 import com.example.movie2you.databinding.FragmentMoviesListBinding
 import com.example.movie2you.features.movieDetails.repository.Home.paging.viewModel.HomeViewModel
@@ -19,7 +18,10 @@ import com.example.movie2you.utils.Command
 import com.example.movie2you.utils.ConstantApp.Home.KEY_BUNDLE_MOVIE_ID
 
 
-class MoviesListFragment : BaseFragment() {
+class MoviesListFragment(
+    override var adapter: NowPlayingAdapter,
+    override var layoutManager: LinearLayoutManager
+) : BaseFragment() {
 
     private var binding: FragmentMoviesListBinding? = null
     private lateinit var viewModel: HomeViewModel
@@ -35,16 +37,6 @@ class MoviesListFragment : BaseFragment() {
         }
     }
 
-    private val nowPlayingDbAdapter: NowPlayingDbAdapter by lazy {
-        NowPlayingDbAdapter { movie ->
-            val bundle = Bundle()
-            bundle.putInt(KEY_BUNDLE_MOVIE_ID, movie.id ?: -1)
-            findNavController().navigate(
-                R.id.action_homeFragment_to_movieDetailFragment,
-                bundle
-            )
-        }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -77,16 +69,15 @@ class MoviesListFragment : BaseFragment() {
             adapter = nowPlayingAdapter
         }
 
-        binding?.rvHomeNowPlayingDb?.apply {
+        binding?.rvHomeNowPlaying?.apply {
             layoutManager = LinearLayoutManager(this.context)
-            adapter = nowPlayingDbAdapter
+            adapter = nowPlayingAdapter
         }
     }
 
     private fun setupRecyclerViewVisibility(
         isListFromInternetShowing: Boolean,
     ) {
-        binding?.rvHomeNowPlayingDb?.isVisible = !isListFromInternetShowing
         binding?.rvHomeNowPlaying?.isVisible = isListFromInternetShowing
     }
 
@@ -95,7 +86,6 @@ class MoviesListFragment : BaseFragment() {
             setupRecyclerViewVisibility(
                 isListFromInternetShowing = true
             )
-            nowPlayingAdapter.submitList(list)
         })
     }
 
@@ -105,7 +95,6 @@ class MoviesListFragment : BaseFragment() {
                 setupRecyclerViewVisibility(
                     isListFromInternetShowing = false
                 )
-                nowPlayingDbAdapter.submitList(it)
             }
         })
 

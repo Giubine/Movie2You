@@ -20,4 +20,9 @@
         android:name="com.example.movie2you.features.movieDetails.view.MovieDetailFragment"
         android:label="MovieDetailFragment"
         tools:layout="@layout/fragment_movie_detail"/>
+    <activity
+        android:id="@+id/splashScreenActivity"
+        android:name="com.example.movie2you.activities.SplashScreenActivity"
+        android:label="activity_splash_screen"
+        tools:layout="@layout/activity_splash_screen" />
 </navigation>

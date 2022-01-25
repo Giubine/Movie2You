@@ -6,7 +6,7 @@ import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.movie2you.R
-import com.example.movie2you.databinding.FragmetMoviesItemBinding
+import com.example.movie2you.databinding.WatchCardItemBinding
 import com.example.movie2you.useCase.Result
 
 
@@ -16,7 +16,7 @@ class NowPlayingAdapter(
 ) : PagedListAdapter<Result, NowPlayingAdapter.ViewHolder>(Result.DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = FragmetMoviesItemBinding
+        val binding = WatchCardItemBinding
             .inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding)
     }
@@ -26,7 +26,7 @@ class NowPlayingAdapter(
     }
 
     class ViewHolder(
-        private val binding: FragmetMoviesItemBinding
+        private val binding: WatchCardItemBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(
@@ -35,14 +35,15 @@ class NowPlayingAdapter(
         ) {
             with(binding) {
                 movie?.let {
-                    movieorseri.setOnClickListener {
+                    tvWatchTitle.text = movie.title
+                    cvWatch.setOnClickListener {
                         onClickListener(movie)
                     }
                     Glide
                         .with(itemView.context)
                         .load(movie.posterPath)
-                        .placeholder(R.drawable.no_image_avaliable)
-                        .into(movieorseri)
+                        .placeholder(R.drawable.no_image)
+                        .into(ivWatchImage)
                 }
             }
         }

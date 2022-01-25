@@ -10,5 +10,28 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
+    <TextView
+        android:id="@+id/tvWatchTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Title"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        android:textAlignment="center"
+        android:layout_marginTop="32dp"/>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cvWatch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+    <ImageView
+        android:id="@+id/ivWatchImage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    </com.google.android.material.card.MaterialCardView>
+
 
 </FrameLayout>

@@ -12,7 +12,7 @@ class HomeUseCase(
 
     suspend fun getNowPlayingMovies(): ResponseApi {
         return when (val responseApi = homeRepository.getNowPlayingMovies()) {
-            is ResponseApi.Success -> {
+            is Success.ResponseApi -> {
                 val data = responseApi.data as? NowPlaying
                 val result = data?.results?.map {
                     it.backdropPath = it.backdropPath?.getFullImageUrl()
