@@ -2,15 +2,14 @@
 Splash screen;
 
 Tela de listas com endpoints:
+
 ○ Get Now Playing;
-○ Get Top Rated;
-○ Get Upcoming;
-○ Get Popular.
+
 
 Tela de detalhes com os endpoints:
+
 ○ Get Details;
-○ Get Similar Movies;
-○ Get Reviews.
+
 
 Erros de api tratados e exibidos ao usuário, por toast;
 
