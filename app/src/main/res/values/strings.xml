@@ -10,4 +10,7 @@
     <string name="nearby_theaters">Movie Theaters nearby</string>
     <string name="label_try_again">Tentar novamente</string>
     <string name="em_exibi_o">Em Exibição</string>
+    <string name="melhores_avaliados">Melhores Avaliados</string>
+    <string name="mais_populares">Mais Populares</string>
+    <string name="em_breve">Em Breve</string>
 </resources>

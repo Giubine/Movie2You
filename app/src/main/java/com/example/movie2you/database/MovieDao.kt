@@ -2,8 +2,8 @@ package com.example.movie2you.database
 
 import androidx.room.*
 import androidx.room.OnConflictStrategy.REPLACE
-import com.example.movie2you.modelDB.MovieDb
-import com.example.movie2you.modelDB.MovieWithGenres
+import com.example.movie2you.modelDb.MovieDb
+import com.example.movie2you.modelDb.MovieWithGenres
 
 @Dao
 interface MovieDao {

@@ -5,12 +5,20 @@
       <map>
         <entry key="..\:/Users/user/AndroidStudioProjects/Movie2You/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.14322916666666666" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Movie2You/app/src/main/res/drawable/bg_gradient.xml" value="0.14322916666666666" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/Movie2You/app/src/main/res/drawable/ic_arroe_back.xml" value="0.11851851851851852" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/Movie2You/app/src/main/res/drawable/ic_baseline_share_24.xml" value="0.11851851851851852" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/Movie2You/app/src/main/res/drawable/ic_faorite_border_24px.xml" value="0.11851851851851852" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Movie2You/app/src/main/res/drawable/ic_launcher_background.xml" value="0.26614583333333336" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Movie2You/app/src/main/res/drawable/splash_background.xml" value="0.264" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Movie2You/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Movie2You/app/src/main/res/layout/activity_splash_screen.xml" value="0.25" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/Movie2You/app/src/main/res/layout/cmp_media_details_bottom_poster_card.xml" value="0.11524822695035461" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Movie2You/app/src/main/res/layout/fragment_base.xml" value="0.25" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/Movie2You/app/src/main/res/layout/fragment_movies_list.xml" value="0.25" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/Movie2You/app/src/main/res/layout/fragment_movie_detail.xml" value="0.25" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/Movie2You/app/src/main/res/layout/fragment_movies_list.xml" value="0.1" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/Movie2You/app/src/main/res/layout/fragmet_movies_item.xml" value="0.25" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/Movie2You/app/src/main/res/layout/movie_detail.xml" value="0.25177304964539005" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/Movie2You/app/src/main/res/layout/watch_card_item.xml" value="0.11930091185410334" />
       </map>
     </option>
   </component>

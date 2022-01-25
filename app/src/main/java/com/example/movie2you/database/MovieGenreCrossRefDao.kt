@@ -4,8 +4,7 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy.REPLACE
-import com.example.movie2you.modelDB.MovieGenreCrossRef
-
+import com.example.movie2you.modelDb.MovieGenreCrossRef
 
 @Dao
 interface MovieGenreCrossRefDao {

@@ -44,10 +44,10 @@ object ApiService {
             }
             .addInterceptor { chain ->
                 val headers = chain.request().newBuilder()
-                    .addHeader(
-                        HEADER_CONTENT_KEY,
-                        HEADER_CONTENT_VALUE
-                    )
+//                    .addHeader(
+//                        HEADER_CONTENT_KEY,
+//                        HEADER_CONTENT_VALUE
+//                    )
                     .addHeader(API_TOKEN_KEY, "Bearer $API_TOKEN")
                 val newRequest = headers.build()
                 chain.proceed(newRequest)

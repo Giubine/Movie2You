@@ -15,7 +15,7 @@ open class BaseViewModel (
     lateinit var command: MutableLiveData<Command>
 
     suspend fun <T> T.callApi(
-        call: suspend ()-> ResponseApi,
+        call: suspend () -> Unit,
         onSuccess: (Any?) -> Unit,
         onError: (() -> Unit?)? = null
     ) {

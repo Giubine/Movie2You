@@ -1,9 +1,9 @@
 package com.example.movie2you.api
 
-import android.graphics.Movie
-import com.example.movie2you.features.useCase.useCase.GenreInfo
-import com.example.movie2you.features.useCase.useCase.NowPlaying
-import com.example.movie2you.features.useCase.useCase.Popular
+import com.example.movie2you.useCase.GenreInfo
+import com.example.movie2you.useCase.Movie
+import com.example.movie2you.useCase.NowPlaying
+import com.example.movie2you.useCase.Popular
 import okhttp3.ResponseBody
 import retrofit2.Response
 import retrofit2.http.Body
