@@ -6,6 +6,8 @@ import com.example.movie2you.modelDb.GenreDb
 import com.example.movie2you.modelDb.GenreWithMovies
 
 interface GenreDao {
+    abstract fun insertAllGenres(genresDb: MutableList<GenreDb>)
+
     @Dao
     interface GenreDao {
 

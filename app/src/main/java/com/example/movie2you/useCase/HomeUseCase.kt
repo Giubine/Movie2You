@@ -12,7 +12,7 @@ class HomeUseCase(
 
     suspend fun getNowPlayingMovies(): ResponseApi {
         return when (val responseApi = homeRepository.getNowPlayingMovies()) {
-            is Success.ResponseApi -> {
+            is ResponseApi.Success -> {
                 val data = responseApi.data as? NowPlaying
                 val result = data?.results?.map {
                     it.backdropPath = it.backdropPath?.getFullImageUrl()
@@ -40,6 +40,31 @@ class HomeUseCase(
             it
         } ?: listOf()
     }
+
+    suspend fun getGenres(): ResponseApi {
+        return when(val response = homeRepository.getGenres()) {
+            is ResponseApi.Success -> {
+                val genreInfo = response.data as? GenreInfo
+                homeRepository.saveGenresDatabase(genreInfo?.genres)
+                response
+            }
+            is ResponseApi.Error -> {
+                response
+            }
+        }
+    }
+
+    suspend fun saveMoviesDb(movies: List<Result>) {
+        homeRepository.saveMoviesDb(movies)
+    }
+
+    suspend fun getMoviesFromDb(): List<Result> {
+        val movieGenreList = homeRepository.getNowPlayingMoviesFromDb()
+        return movieGenreList.map {
+            it.to(ResultApi)
+        }
+    }
+}
 
 }
 

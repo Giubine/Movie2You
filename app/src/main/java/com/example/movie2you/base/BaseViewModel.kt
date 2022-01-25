@@ -24,7 +24,7 @@ open class BaseViewModel (
         when(val response = call.invoke()) {
             is ResponseApi.Success -> {
                 command.postValue(Command.Loading(false))
-                onSuccess(response.data)
+                return onSuccess(response.data)
             }
             is ResponseApi.Error -> {
                 command.postValue(Command.Loading(false))
