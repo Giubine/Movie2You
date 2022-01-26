@@ -16,6 +16,7 @@ import com.example.movie2you.databinding.FragmentMoviesListBinding
 import com.example.movie2you.features.movieDetails.repository.Home.paging.viewModel.HomeViewModel
 import com.example.movie2you.utils.Command
 import com.example.movie2you.utils.ConstantApp.Home.KEY_BUNDLE_MOVIE_ID
+import com.google.android.material.snackbar.Snackbar
 
 
 class MoviesListFragment(
@@ -54,9 +55,6 @@ class MoviesListFragment(
             viewModel = ViewModelProvider(it)[HomeViewModel::class.java]
 
             viewModel.command = command
-            viewModel.getGenres()
-
-            //inicio app -> carregar os generos -> paging
 
             setupObservables()
             setupRecyclerView()
@@ -69,10 +67,7 @@ class MoviesListFragment(
             adapter = nowPlayingAdapter
         }
 
-        binding?.rvHomeNowPlaying?.apply {
-            layoutManager = LinearLayoutManager(this.context)
-            adapter = nowPlayingAdapter
-        }
+
     }
 
     private fun setupRecyclerViewVisibility(
@@ -90,6 +85,9 @@ class MoviesListFragment(
     }
 
     private fun setupObservables() {
+        viewModel.moviesPagedList?.observe(viewLifecycleOwner, {
+ nowPlayingAdapter.submitList(it)
+        })
         viewModel.onMoviesLoadedFromDb.observe(viewLifecycleOwner, {
             it?.let {
                 setupRecyclerViewVisibility(
@@ -108,7 +106,14 @@ class MoviesListFragment(
 
                 }
                 is Command.Error -> {
-                    viewModel.getMoviesFromDb()
+                    binding?.let{bindingNonNull ->
+                        Snackbar.make(
+                            bindingNonNull.rvHomeNowPlaying,
+                            getString(it.error),
+                            Snackbar.LENGTH_SHORT
+                        ).show()
+
+                    }
                 }
             }
         })

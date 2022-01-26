@@ -6,15 +6,12 @@ import com.example.movie2you.useCase.NowPlaying
 import com.example.movie2you.useCase.Popular
 import okhttp3.ResponseBody
 import retrofit2.Response
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Path
+import retrofit2.http.*
 
 interface TMDBApi {
 
     @GET("movie/now_playing")
-    suspend fun getNowPlayingMovies(): Response<NowPlaying>
+    suspend fun getNowPlayingMovies(@Query ("page")page: Int): Response<NowPlaying>
 
 
     @GET("movie/popular")
