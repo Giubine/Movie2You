@@ -47,7 +47,7 @@ val application: Application
             val genresDb: MutableList<GenreDb> = mutableListOf()
 
             genresApi.forEach {
-                genresDb.add(it.to(GenreDb))
+                genresDb.add(it.toGenreDb)
             }
 
             MovieYouDataBase

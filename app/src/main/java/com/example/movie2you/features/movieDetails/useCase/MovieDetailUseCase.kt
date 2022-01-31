@@ -1,6 +1,7 @@
 package com.example.movie2you.features.movieDetails.useCase
 
 import android.app.Application
+import com.example.movie2you.extensions.getFullImageUrl
 import com.example.movie2you.features.movieDetails.repository.MovieDetailRepository
 import com.example.movie2you.useCase.Movie
 import com.example.movie2you.utils.ResponseApi
@@ -15,7 +16,7 @@ class MovieDetailUseCase(
         return when(val responseApi = movieDetailRepository.getMovieById(movieId)) {
             is ResponseApi.Success -> {
                 val movie = responseApi.data as? Movie
-                movie?.backdrop_path = movie?.backdrop_path?.getFullImageUrl().toString()
+                movie?.poster_path = movie?.poster_path?.getFullImageUrl()
                 return ResponseApi.Success(movie)
             }
             is ResponseApi.Error -> {
@@ -28,7 +29,5 @@ class MovieDetailUseCase(
         movieDetailRepository.getMovieByIdFromDb(movieId)
 }
 
-private fun Any?.getFullImageUrl() {
 
-}
 

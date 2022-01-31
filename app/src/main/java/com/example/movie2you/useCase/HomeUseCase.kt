@@ -1,6 +1,7 @@
 package com.example.movie2you.useCase
 
 import android.app.Application
+import com.example.movie2you.extensions.getFullImageUrl
 import com.example.movie2you.features.movieDetails.repository.HomeRepository
 import com.example.movie2you.utils.ConstantApp.Home.FIRST_PAGE
 import com.example.movie2you.utils.ResponseApi

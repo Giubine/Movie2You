@@ -16,7 +16,7 @@ import com.example.movie2you.useCase.Movie
 import com.example.movie2you.utils.Command
 import com.example.movie2you.utils.ConstantApp.Home.KEY_BUNDLE_MOVIE_ID
 
-class MovieDetailFragment : BaseFragment() {
+abstract class MovieDetailFragment : BaseFragment() {
 
     private var binding: FragmentMovieDetailBinding? = null
 
@@ -40,15 +40,30 @@ class MovieDetailFragment : BaseFragment() {
         activity?.let {
             viewModel = ViewModelProvider(it)[MovieDetailViewModel::class.java]
 
-            viewModel.command = command
-
             viewModel.getMovieById(movieId)
+            viewModel.command = command
 
             setupObservables()
         }
     }
 
     private fun setupObservables() {
+
+        viewModel.onSuccessMovieById.observe(viewLifecycleOwner,{
+            it.let {
+                movie->
+                binding.let { bindingNonNull->
+                    with(bindingNonNull){
+                        activity?.let { activityNonNull ->
+                            Glide.with(activityNonNull)
+                                .load(movie.backdrop_path)
+                                .into(this!!.ivMovieDetailsPosterImage)
+                        }
+                        this!!.tvMovieDetailsDescriptionText.text = movie.overview
+                    }
+                }
+             }
+        })
         viewModel.onSuccessMovieById.observe(viewLifecycleOwner, {
             setupData(it)
         })
@@ -63,7 +78,9 @@ class MovieDetailFragment : BaseFragment() {
 
                 }
                 is Command.Error -> {
-                    viewModel.getMovieByIdFromDb(movieId)
+                    binding?.contentLayout?.isVisible = false
+                    binding?.contentError?.isVisible = true
+                    viewModel.getMovieById(movieId)
                 }
             }
         })

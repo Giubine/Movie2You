@@ -2,6 +2,7 @@ package com.example.movie2you.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.movie2you.R
@@ -10,9 +11,9 @@ import com.example.movie2you.useCase.Result
 
 
 class NowPlayingAdapter(
-
+    val nowPlayingAdapter: List<Result>,
     private val onClickListener: (movie: Result) -> Unit
-) :androidx.recyclerview.widget.ListAdapter<Result, NowPlayingAdapter.ViewHolder>(Result.DIFF_CALLBACK) {
+) : androidx.recyclerview.widget.ListAdapter<Result, NowPlayingAdapter.ViewHolder>(Result.DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = WatchCardItemBinding

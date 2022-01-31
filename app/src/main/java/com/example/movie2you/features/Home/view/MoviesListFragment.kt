@@ -21,14 +21,14 @@ import com.google.android.material.snackbar.Snackbar
 
 class MoviesListFragment(
     override var adapter: NowPlayingAdapter,
-    override var layoutManager: LinearLayoutManager
+    override var layoutManager: LinearLayoutManager,
 ) : BaseFragment() {
 
     private var binding: FragmentMoviesListBinding? = null
     private lateinit var viewModel: HomeViewModel
 
     private val nowPlayingAdapter: NowPlayingAdapter by lazy {
-        NowPlayingAdapter { movie ->
+       NowPlayingAdapter { movie ->
             val bundle = Bundle()
             bundle.putInt(KEY_BUNDLE_MOVIE_ID, movie.id ?: -1)
             findNavController().navigate(
@@ -53,8 +53,8 @@ class MoviesListFragment(
 
         activity?.let {
             viewModel = ViewModelProvider(it)[HomeViewModel::class.java]
-
             viewModel.command = command
+            viewModel.getGenres()
 
             setupObservables()
             setupRecyclerView()
@@ -85,8 +85,28 @@ class MoviesListFragment(
     }
 
     private fun setupObservables() {
+
+//        viewModel.onSuccessNowPlaying.observe(viewLifecycleOwner, {
+//            it?.let{nowPlayingList ->
+//                val nowPlayingAdapter = NowPlayingAdapter(
+//                    nowPlayingList = nowPlayingList
+//                ){movie ->
+//                    viewModel.getMovieById(movie.id)
+//                }
+//
+//                binding.let {
+//                    with(it){
+//                        rvHomeNowPlaying.apply{
+//                            layoutManager = GridLayoutManager (context, 2)
+//                            adapter = nowPlayingAdapter
+//                        }
+//                    }
+//                }
+//            }
+//        })
+
         viewModel.moviesPagedList?.observe(viewLifecycleOwner, {
- nowPlayingAdapter.submitList(it)
+            nowPlayingAdapter.submitList(it)
         })
         viewModel.onMoviesLoadedFromDb.observe(viewLifecycleOwner, {
             it?.let {
@@ -106,7 +126,7 @@ class MoviesListFragment(
 
                 }
                 is Command.Error -> {
-                    binding?.let{bindingNonNull ->
+                    binding?.let { bindingNonNull ->
                         Snackbar.make(
                             bindingNonNull.rvHomeNowPlaying,
                             getString(it.error),

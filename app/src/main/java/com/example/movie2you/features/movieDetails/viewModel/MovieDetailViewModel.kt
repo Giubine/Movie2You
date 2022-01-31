@@ -11,8 +11,8 @@ import com.example.movie2you.useCase.Movie
 import kotlinx.coroutines.launch
 
 class MovieDetailViewModel(
-    application: Application
-): BaseViewModel(application) {
+    application: Application,
+) : BaseViewModel(application) {
 
     private val movieDetailUseCase = MovieDetailUseCase(
         getApplication<Application>()
@@ -38,10 +38,4 @@ class MovieDetailViewModel(
         }
     }
 
-    fun getMovieByIdFromDb(movieId: Int) {
-        viewModelScope.launch {
-            val movieFromDb = movieDetailUseCase.getMovieByIdFromDb(movieId)
-            _onSuccessMovieDbByIdFromDb.postValue(movieFromDb)
-        }
-    }
 }
